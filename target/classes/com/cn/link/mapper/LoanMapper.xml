@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.link.mapper.LoanMapper">
+
+<resultMap id="LiquidLoanMap" type="com.cn.link.model.LiquidLoan">
+	<id column='id' property='id'></id>
+	<result column='bank' property='bank'></result>
+	<result column='money' property='money'></result>
+	<result column='repayDate' property='repaydate'></result>
+	<result column='rate' property='rate'></result>
+	<result column='interestway' property='interestway'></result>
+	<result column='loanway' property='loanway'></result>
+	<result column='registerdate' property='registerdate'></result>
+	<result column='loandate' property='loandate'></result>
+	<result column='isuescredit' property='isusecredit'></result>
+	<result column='isrepayed' property='isrepayed'></result>
+</resultMap>
+
+<insert id="insertLiquidLoan" parameterType='com.cn.link.model.LiquidLoan'>
+	insert into liquidloan(bank, money, repayDate, rate, interestway, loanway, registerdate, loandate, isusecredit)
+	values(#{bank}, #{money}, #{repaydate}, #{rate}, #{interestway}, #{loanway}, #{registerdate}, 
+	#{loandate}, #{isusecredit})
+</insert>
+
+<select id="queryInterestWay" resultType="String">
+	select interestway from interestway;
+</select>
+
+<select id="queryLoanWay" resultType="String">
+	select loanway from loanway;
+</select>
+
+<select id="queryLiquidLoanByDate" resultMap='LiquidLoanMap'>
+	select * from liquidloan where isrepayed = 0 and strcmp(#{today}, repayDate) &lt;= 0
+</select>
+</mapper>

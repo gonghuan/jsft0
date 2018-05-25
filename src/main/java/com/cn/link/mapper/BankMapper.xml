@@ -5,6 +5,21 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="bank" jdbcType="CHAR" property="bank" />
   </resultMap>
+  <resultMap id="RemainResultMap" type="com.cn.link.model.BankRemain">
+  	<id column="id" property="id"></id>
+  	<result column="bank" property="bank"></result>
+  	<result column="bankbranch" property="branch"></result>
+  	<result column="account" property="account"></result>
+  	<result column="currency" property="currency"></result>
+  	<result column="remain" property="remain"></result>
+  	<result column="date" property="date"></result>
+  </resultMap>
+  <resultMap id="BankBranchMap" type="com.cn.link.model.BankBranch">
+  	<result column="bank" property="bank"></result>
+  	<result column="bankName" property="bankName"></result>
+  	<result column="currency" property="currency"></result>
+  	<result column="account" property="account"></result>
+  </resultMap>
   <sql id="Base_Column_List">
     id, bank
   </sql>
@@ -59,5 +74,46 @@
   <select id="queryBank" resultType="java.lang.String">
     select DISTINCT bank
     from bank
+  </select>
+  
+  <select id="queryBankBranch" resultType="java.lang.String" parameterType="java.lang.String">
+  	select distinct bankName from bankbranch where bankName like concat('%', #{bank}, '%')
+  </select>
+  
+  <select id='queryBankBranches' resultType='java.lang.String'>
+  	select distinct bankName from bankbranch
+  </select>
+  
+  <select id='queryBankAccount' resultType='java.lang.String'>
+  	select account from bankbranch where bankName = #{bankBranch}
+  </select>
+  
+  <insert id='insertBankRemain' parameterType='com.cn.link.model.BankRemain'>
+  	insert into bankremain(bank, bankbranch, account, currency, remain, date) values(#{bank}, #{branch},
+  	#{account}, #{currency}, #{remain}, #{date});
+  </insert>
+  
+  <insert id='insertBankRemainList' >
+  	insert into bankremain(bank, bankbranch, account, currency, remain, date) values
+  	<foreach collection = 'list' item = 'bankremain' separator=','>
+  		(#{bankremain.bank}, #{bankremain.branch}, #{bankremain.account}, #{bankremain.currency}, #{bankremain.remain},
+  		#{bankremain.date})
+  	</foreach>
+  </insert>
+  
+  <select id='queryTodayBankRemain' resultMap='RemainResultMap'>
+  	select * from bankremain where date = #{today}
+  </select>
+  
+  <select id='queryBankRemainCurrency' resultMap='RemainResultMap'>
+  	select * from bankremain where currency = #{currency}
+  </select>
+  
+  <select id='queryBankRemainForeignCurrency' resultMap='RemainResultMap'>
+  	select * from bankremain where currency != #{currency}
+  </select>
+  
+  <select id='queryBankbranch' resultMap="BankBranchMap">
+  	select * from bankbranch;
   </select>
 </mapper>

@@ -2,7 +2,8 @@ var modify_flag=0;
 
 angular.module('myApp',[
     'ngRoute','ngAnimate','ui.bootstrap','ngMessages','ngCookies',
-    'homeController','crtController','acceptController','billOfDraftController','billOfPrintDraftController'])
+    'homeController','crtController','acceptController','billOfDraftController',
+    'billOfPrintDraftController'])
 
    .config(function($routeProvider){
     $routeProvider.when('/crtBill',{
@@ -114,6 +115,22 @@ angular.module('myApp',[
     	templateUrl: 'pages/editAcceptCredit.html',
     	reloadOnSearch: true,
     	controller: 'acceptCtrl'
+    })
+    .when('/bankRemain', {
+    	templateUrl: 'pages/bankRemain2.html',
+    	reloadOnSearch: true
+    })
+    .when('/searchBankRemain', {
+    	templateUrl: 'pages/searchBankRemain.html',
+    	reloadOnSearch: true
+    })
+    .when('/otherRepayment',{
+    	templateUrl: 'pages/loan.html',
+    	reloadOnSearch: true
+    })
+    .when('/searchLiquidLoan',{
+    	templateUrl: 'pages/searchLiquidLoan.html',
+    	reloadOnSearch: true
     })
     .otherwise({
         redirectTo:'/notice'

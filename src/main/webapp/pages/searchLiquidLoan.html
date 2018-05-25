@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>JSFT资金管理系统</title>
+	<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="css/dashboard.css" type="text/css" rel="stylesheet">
+    <link href="css/bootstrap-table.css" type="text/css" rel="stylesheet">
+    <link href="css/jsft.css" type="text/css" rel="stylesheet">
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/framework/bootstrap/bootstrap.min.js"></script>
+    <script src="js/framework/bootstrap/bootstrap-table.js"></script>
+    <script src="js/framework/bootstrap/jquery.base64.js"></script>
+    <script src="//rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
+    <script src="js/framework/bootstrap/bootstrap-table-export.js"></script>
+    <script src="js/framework/bootstrap/bootstrap-table-zh-CN.js"></script>
+    <script src="js/framework/bootstrap/bootstrap-table-filter-control.js"></script>
+    <script src="js/framework/bootstrap/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/framework/bootstrap/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/searchLiquidLoan.js"></script>
+</head>
+<body>
+	<div class='container-fluid'>
+		<div class='row'>
+			<div class='col-sm-3 col-md-2 sidebar'>
+				<ul class="nav nav-sidebar">
+					<li><label>其他待还款</label></li>
+					<li id='inputLoanNavSiderbar'><a href='#/otherRepayment'>录入待还款</a></li>
+					<li id="searchLiquidLoanNavSidebar" class='active'><a href="#/searchLiquidLoan">查看流贷</a></li>
+					<li id="searchInternalCertificateNavSidebar"><a href="#/searchInternalCertificate">查看国内证</a></li>
+				</ul>
+			</div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<div class="container" style="width: 100%;">
+                	<h1>查看流贷</h1>
+                	<div class="panel panel-default">
+	                	<div class="panel-body">
+	                		<table id='liquidLoan' data-filter-control="true">
+		                		<thead>
+		                    		<tr>
+		                    			<th data-checkbox="true"></th>
+		                    			<th data-field="id" data-sortable="true">序号</th>
+		                    			<th data-field="bank" data-sortable="true" data-filter-control="select">银行</th>
+		                    			<th data-field="money"  data-sortable="true">贷款金额</th>
+		                    			<th data-field="loandate"  data-sortable="true" data-filter-control="input">发生日</th>
+		                    			<th data-field="repaydate"  data-sortable="true" data-filter-control="input">到期日</th>
+		                    			<th data-field="rate"  data-sortable="true">贷款利率</th>
+		                    			<th data-field="interestway" data-sortable='true' data-filter-control='select'>计息方式</th>
+		                    			<th data-field="loanway" data-sortable='true' data-filter-control='select'>贷款方式</th>
+		                    			<th data-field="isusecredit" data-sortable='true'>是否占用授信</th>
+		                    		</tr>
+		                    	</thead>
+		                	</table>
+	                	</div>
+                	</div>
+                	
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

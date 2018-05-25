@@ -56,6 +56,8 @@
                     <li><a ng-href="#/addCredit" ng-click="reloadRoute()">信用证开立</a></li>
                     <li><a ng-href="#/addAcceptCredit" ng-hide="role=='Y'" ng-click="reloadRoute()">信用证承兑</a></li>
                     <li><a ng-href="#/billOfDraft" ng-click="reloadRoute()">信用证押汇</a></li>
+                    <li><a ng-href='#/bankRemain' ng-click='reloadRoute()'>银行余额</a></li>
+                    <li><a ng-href='#/otherRepayment' ng-click='reloadRoute()'>其他待还款</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" id="userMsg" ng-hide="username == null" ng-controller="homeCtrl">
                     <li class="dropdown">

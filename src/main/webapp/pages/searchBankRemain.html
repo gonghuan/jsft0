@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JSFT资金管理系统</title>
+	<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="css/dashboard.css" type="text/css" rel="stylesheet">
+    <link href="css/bootstrap-table.css" type="text/css" rel="stylesheet">
+    <link href="css/jsft.css" type="text/css" rel="stylesheet">
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/framework/bootstrap/bootstrap.min.js"></script>
+    <script src="js/framework/bootstrap/bootstrap-table.js"></script>
+    <script src="js/framework/bootstrap/jquery.base64.js"></script>
+    <script src="//rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
+    <script src="js/framework/bootstrap/bootstrap-table-export.js"></script>
+    <script src="js/framework/bootstrap/bootstrap-table-zh-CN.js"></script>
+    <script src="js/framework/bootstrap/bootstrap-table-filter-control.js"></script>
+    <script src="js/framework/bootstrap/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/framework/bootstrap/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/searchBankRemain.js"></script>
+</head>
+<body>
+	<div class='container-fluid'>
+		<div class='row'>
+			<div class='col-sm-3 col-md-2 sidebar'>
+				<ul class="nav nav-sidebar">
+					<li><label>银行余额</label></li>
+					<li id='inputBankRemainNavSiderbar'><a href='#/bankRemain'>录入银行余额</a></li>
+					<li id="searchBankReaminNavSidebar" class='active'><a href="#/searchBankRemain">查看银行余额</a></li>
+				</ul>
+			</div>
+			<div class='col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main'>
+				<h1>查看银行余额</h1>
+				<div class="panel panel-default">
+                	<div class="panel-body">
+                	    <div>
+                	    	<h3>当日余额</h3>
+	                		<table id="todayRemain" data-filter-control="true">
+	                    	<thead>
+	                    		<tr>
+	                    			<th data-checkbox="true"></th>
+	                    			<th data-field="id" data-sortable="true">序号</th>
+	                    			<th data-field="bank" data-sortable="true" data-filter-control="select">银行</th>
+	                    			<th data-field="branch"  data-sortable="true" data-filter-control="select">支行</th>
+	                    			<th data-field="account"  data-sortable="true" data-filter-control="input">账户</th>
+	                    			<th data-field="currency"  data-sortable="true" data-filter-control="select">币种</th>
+	                    			<th data-field="remain"  data-sortable="true">余额</th>
+	                    		</tr>
+	                    	</thead>
+	                    	</table>
+                    	</div>
+                	</div>
+                </div>
+                <div class="panel panel-default">
+                	<div class="panel-body">
+                	    <div>
+                	    	<h3>人民币余额</h3>
+	                		<table id="RMBRemain" data-filter-control="true">
+	                    	<thead>
+	                    		<tr>
+	                    			<th data-checkbox="true"></th>
+	                    			<th data-field="id" data-sortable="true">序号</th>
+	                    			<th data-field="bank" data-sortable="true" data-filter-control="select">银行</th>
+	                    			<th data-field="branch"  data-sortable="true" data-filter-control="select">支行</th>
+	                    			<th data-field="account"  data-sortable="true" data-filter-control="input">账户</th>
+	                    			<th data-field="currency"  data-sortable="true">币种</th>
+	                    			<th data-field="remain"  data-sortable="true">余额</th>
+	                    			<th data-field="date" data-sortable="true">日期</th>
+	                    		</tr>
+	                    	</thead>
+	                    	</table>
+                    	</div>
+                	</div>
+                </div>
+                <div class="panel panel-default">
+                	<div class="panel-body">
+                	    <div>
+                	    	<h3>外币余额</h3>
+	                		<table id="foreignRemain" data-filter-control="true">
+	                    	<thead>
+	                    		<tr>
+	                    			<th data-checkbox="true"></th>
+	                    			<th data-field="id" data-sortable="true">序号</th>
+	                    			<th data-field="bank" data-sortable="true" data-filter-control="select">银行</th>
+	                    			<th data-field="branch"  data-sortable="true" data-filter-control="select">支行</th>
+	                    			<th data-field="account"  data-sortable="true" data-filter-control="input">账户</th>
+	                    			<th data-field="currency"  data-sortable="true" data-filter-control="select">币种</th>
+	                    			<th data-field="remain"  data-sortable="true">余额</th>
+	                    			<th data-field="date" data-sortable="true">日期</th>
+	                    		</tr>
+	                    	</thead>
+	                    	</table>
+                    	</div>
+                	</div>
+                </div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

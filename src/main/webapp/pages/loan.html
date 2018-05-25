@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="css/dashboard.css" type="text/css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet">
+    <link href="css/jsft.css" type="text/css" rel="stylesheet">
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/framework/bootstrap/bootstrap.min.js"></script>
+    <script src="js/framework/bootstrap/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/framework/bootstrap/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src='js/loan.js'></script>
+	<title>JSFT资金管理系统</title>
+</head>
+<body>
+	<div class='container-fluid'>
+		<div class='row'>
+			<div class='col-sm-3 col-md-2 sidebar'>
+				<ul class="nav nav-sidebar">
+					<li><label>其他待还款</label></li>
+					<li id='inputLoanNavSiderbar' class='active'><a href='#/otherRepayment'>录入待还款</a></li>
+					<li id="searchLiquidLoanNavSidebar"><a href="#/searchLiquidLoan">查看流贷</a></li>
+					<li id="searchInternalCertificateNavSidebar"><a href="#/searchInternalCertificate">查看国内证</a></li>
+				</ul>
+			</div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<div class="container" style="width: 100%;">
+                	<h1>录入待还款</h1>
+                	<div class='panel panel-default'>
+                		<div class='panel-body'>
+                			<div class='form-group'>
+                				<label class='col-sm-3 form-label' for='loanApproach'>待还款方式：</label>
+                				<div class='col-sm-9'>
+                					<select id='loanApproach' class='form-control'>
+		                				<option value='liquidLoan' selected='selected'>流贷</option>
+		                				<option value="domesticCertificate">国内证</option>
+		                			</select>
+                				</div>	                			
+                			</div>
+                			
+                			<form id="inputLiquidLoan" class="form-horizontal" role="form">
+		                		<div class="panel panel-default">
+		                        	<div class="panel-body row">
+		                        		<div id="inputBankDiv" class="form-group col-md-6">
+		                        			<label for='selectBank' class="col-sm-3 control-label">银行</label>
+		                                	<div class="col-sm-8">
+		                                    	<select id='selectBank' class='form-control' name='bank'></select>
+		                                	</div>
+		                        		</div>
+		                        		<div id="inputMoneyDiv" class="form-group col-md-6">
+		                        			<label for='inputMoney' class="col-sm-4 control-label">贷款金额</label>
+		                                	<div class="col-sm-8">
+		                                    	<input type='text' id='inputMoney' class='form-control' name='money'>
+		                                	</div>
+		                        		</div>
+		                        		<div id='inputLoanDateDiv' class='form-group col-md-6'>
+		                        			<label for="inputLoanDate" class="col-sm-3 control-label">发生日</label>
+		                        			<div class="col-sm-8">
+			                                    <div class="input-group date form_date" data-date="" data-date-format="yyyy/mm/dd" data-link-field="inputLoanDate" data-link-format="yyyy/mm/dd">
+			                                        <input id="inputLoanDateText" class="form-control" size="16" type="text" value="" onchange="setWeekday()" readonly="true">
+			                                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+			                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+			                                    </div>
+			                                    <input type="hidden" id="inputLoanDate" value="" name='loanDate'/><br/>
+		                                	</div>
+		                        		</div>
+		                        		<div id='inputRepayDateDiv' class='form-group col-md-6'>
+		                        			<label for="inputRepayDate" class="col-sm-4 control-label">到期日</label>
+		                        			<div class="col-sm-8">
+			                                    <div class="input-group date form_date" data-date="" data-date-format="yyyy/mm/dd" data-link-field="inputRepayDate" data-link-format="yyyy/mm/dd">
+			                                        <input id="inputRepayDateText" class="form-control" size="16" type="text" value="" onchange="setWeekday()" readonly="true">
+			                                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+			                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+			                                    </div>
+			                                    <input type="hidden" id="inputRepayDate" value="" name='repayDate'/><br/>
+		                                	</div>
+		                        		</div>
+		                        		<div id="inputRateDiv" class="form-group col-md-6">
+		                        			<label for='inputRate' class="col-sm-3 control-label">贷款利率</label>
+		                                	<div class="col-sm-8">
+		                                    	<input type='text' id='inputRate' class='form-control' name='rate'>
+		                                	</div>
+		                        		</div>
+		                        		<div id="inputIsUseCreditDiv" class="form-group col-md-6">
+		                        			<label for='inputIsUseCredit' class="col-sm-4 control-label">是否占用授信</label>
+		                                	<div class="col-sm-8">
+		                                    	<label class="radio-inline">
+		                                    		<input type='radio' id='inputIsUseCredit' name='isUseCredit' value="1">yes
+		                                    	</label>
+		                                    	<label class="radio-inline">
+		                                    		<input type='radio' id='inputIsUseCredit' name='isUseCredit' value="0" checked>no
+		                                    	</label>
+		                                	</div>
+		                        		</div>
+		                        		<div id="inputInterestWayDiv" class="form-group col-md-6">
+		                        			<label for='selectInterestWay' class="col-sm-3 control-label">计息方式</label>
+		                                	<div class="col-sm-8">
+		                                    	<select id='selectInterestWay' class='form-control' name='interestWay'></select>
+		                                	</div>
+		                        		</div>
+		                        		<div id="inputLoanWayDiv" class="form-group col-md-6">
+		                        			<label for='selectLoanWay' class="col-sm-4 control-label">贷款方式</label>
+		                                	<div class="col-sm-8">
+		                                    	<select id='selectLoanWay' class='form-control' name='loanWay'></select>
+		                                	</div>
+		                        		</div>
+		                        		<div class='form-group col-md-12'>
+		                            		<button type="button" class='btn btn-default btn-lg col-sm-offset-4'>清空</button>
+		                            		<button type="submit" class="btn btn-success btn-lg col-sm-offset-1"
+		                            		 id='saveLiquidLoanBtn'>确定</button>
+		                            	</div>
+		                        	</div>
+		                        </div>
+		                    </form>
+                		</div>
+                	</div>
+                	
+                </div>
+            </div>
+        </div>    
+    </div>
+</body>
+<script type="text/javascript">
+	function getNowFormatDate() {
+	    var date = new Date();
+	    var seperator1 = "/";
+	    var year = date.getFullYear();
+	    var month = date.getMonth() + 1;
+	    var strDate = date.getDate();
+	  	if (month >= 1 && month <= 9) {
+	        month = "0" + month;
+	    }
+	    if (strDate >= 0 && strDate <= 9) {
+	        strDate = "0" + strDate;
+	    } 
+	    var currentdate = year + seperator1 + month + seperator1 + strDate;
+	    return currentdate;
+	}
+	
+	function strToTime(timeStr) {
+	    var seperator1 = "/";
+	    if(timeStr){
+	        var str = timeStr.split(seperator1);
+	        if (3 === str.length){
+	            var year = parseInt(str[0]);
+	            var month = parseInt(str[1])-1;
+	            var date = parseInt(str[2]);
+	            var time = new Date(year,month,date);
+	            return time;
+	        }
+	    }
+	}
+	
+	function getWeekday(timeStr) {
+	    var show_day = new Array('星期日','星期一','星期二','星期三','星期四','星期五','星期六','星期日');
+	    var datetime = strToTime(timeStr);
+	    var day = datetime.getDay();
+	    return show_day[day];
+	}
+	
+	function setWeekday() {
+	    var date = $('#inputPaymentDate').val();
+	    var weekday = getWeekday(date);
+	    $('#inputWeekday').val(weekday);
+	}
+	
+	$('.form_date').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+</script>
+</html>

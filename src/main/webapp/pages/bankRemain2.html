@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="css/dashboard.css" type="text/css" rel="stylesheet">
+    <link href="css/bootstrap-table.css" type="text/css" rel="stylesheet">
+    <link href="css/jsft.css" type="text/css" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/framework/bootstrap/bootstrap.min.js"></script>
+    <script src="js/framework/bootstrap/bootstrap-editable.min.js"></script>
+    <script src="js/framework/bootstrap/bootstrap-table.js"></script>
+    <script src="js/framework/bootstrap/jquery.base64.js"></script>
+    <script src="//rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
+    <script src="js/framework/bootstrap/bootstrap-table-export.js"></script>
+    <script src="js/framework/bootstrap/bootstrap-table-zh-CN.js"></script>
+    <script src="js/framework/bootstrap/bootstrap-table-filter-control.js"></script>
+    <script src="js/framework/bootstrap/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/framework/bootstrap/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/framework/bootstrap/bootstrap-table-editable.js"></script>
+    <script src='js/bankRemain2.js'></script>
+</head>
+<body>
+	<div class='container-fluid'>
+		<div class='row'>
+			<div class='col-sm-3 col-md-2 sidebar'>
+				<ul class="nav nav-sidebar">
+					<li><label>银行余额</label></li>
+					<li id='inputBankRemainNavSiderbar' class='active'><a href='#/bankRemain'>录入银行余额</a></li>
+					<li id="searchBankReaminNavSidebar"><a href="#/searchBankRemain">查看银行余额</a></li>
+				</ul>
+			</div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<div class="container" style="width: 100%;">
+                	<h1>录入银行余额</h1>
+                	<div id='toolbar' class='btn-group'>
+						<div class='col-md-3'>
+							<button id='saveBtn' type='button' class='btn btn-success'>保存</button>
+						</div>
+						<div class='col-md-4'>
+							<button id='delBtn' type='button' class='btn btn-danger'>删除账户</button>
+						</div>
+						<div class='col-md-4'>
+							<button id='addBtn' type='button' class='btn btn-primary'>添加账户</button>
+						</div>
+						
+					</div>
+					<div class="panel panel-default">
+                		<div class="panel-body">
+                			<table id='table'></table>
+                		</div>
+                	</div>
+                </div>
+            </div>
+		</div>
+	</div>
+</body>
+<script>
+	$(function(){
+		var oTable = new tableInit();
+	});
+	
+	var tableInit = function(){
+		$('#table').bootstrapTable({
+			url: 'getBankBranches.do',
+    		method: 'get',
+    		toolbar: '#toolbar',
+    		striped: true,
+    		sidePagination: 'client',
+    		pagination: true,
+    		sortable: true,
+    		cache: true,
+    		pageNumber: 1,    		
+    		pageSize: 100,
+    		pageList: [10,15,25,50,100],
+    		search: true,
+    		showRefresh: true,
+    		showToggle: true,
+    		showColumns: true,
+    		clickToSelect: true,
+    		columns:[{
+    			checkbox: true
+    		},{
+    			field: 'bank',
+    			title: '银行',
+    		},{
+    			field: 'bankName',
+    			title: '支行',
+    		},{
+    			field: 'account',
+    			title: '账户',
+    		},{
+    			field: 'currency',
+    			title: '币种'
+    		},{
+    			field: 'remain',
+    			title: '余额',
+    			editable: {
+    				type: 'text',
+    				validate: function(v){
+    					if(isNaN(v)) return '余额必须是数字！';
+    					var remain = parseInt(v);
+    					if(remain < 0) return '余额必须是正数';
+    				}
+    			}
+    		}],
+		});
+	}
+</script>
+</html>
