@@ -35,15 +35,25 @@
                 	<div class="panel-body">
                 	    <div>
                 	    	<h3>当日余额</h3>
+	                	    <div id="toolbar1" class="btn-group">
+	                   			<div class="row">
+	                  				<div class="col-md-4">
+	                  					<button class="btn btn-primary" style="width: 60px" onclick="getSum1()">求和</button>
+	                  				</div>
+	                  				<div class="col-md-4">
+	                  					<input type="text" id="sumText1" style="width: 100px; " readonly="readonly">
+	                  				</div>
+	                   			</div>
+	                   		</div>
 	                		<table id="todayRemain" data-filter-control="true">
 	                    	<thead>
 	                    		<tr>
 	                    			<th data-checkbox="true"></th>
 	                    			<th data-field="id" data-sortable="true">序号</th>
-	                    			<th data-field="bank" data-sortable="true" data-filter-control="select">银行</th>
-	                    			<th data-field="branch"  data-sortable="true" data-filter-control="select">支行</th>
+	                    			<th data-field="bank" data-sortable="true" data-filter-control="input">银行</th>
+	                    			<th data-field="branch"  data-sortable="true" data-filter-control="input">支行</th>
 	                    			<th data-field="account"  data-sortable="true" data-filter-control="input">账户</th>
-	                    			<th data-field="currency"  data-sortable="true" data-filter-control="select">币种</th>
+	                    			<th data-field="currency"  data-sortable="true" data-filter-control="input">币种</th>
 	                    			<th data-field="remain"  data-sortable="true">余额</th>
 	                    		</tr>
 	                    	</thead>
@@ -54,14 +64,24 @@
                 <div class="panel panel-default">
                 	<div class="panel-body">
                 	    <div>
-                	    	<h3>人民币余额</h3>
+                	    	<h3>人民币余额(历史记录)</h3>
+                	    	<div id="toolbar2" class="btn-group">
+	                   			<div class="row">
+	                  				<div class="col-md-4">
+	                  					<button class="btn btn-primary" style="width: 60px" onclick="getSum2()">求和</button>
+	                  				</div>
+	                  				<div class="col-md-4">
+	                  					<input type="text" id="sumText2" style="width: 100px; " readonly="readonly">
+	                  				</div>
+	                   			</div>
+	                   		</div>
 	                		<table id="RMBRemain" data-filter-control="true">
 	                    	<thead>
 	                    		<tr>
 	                    			<th data-checkbox="true"></th>
 	                    			<th data-field="id" data-sortable="true">序号</th>
-	                    			<th data-field="bank" data-sortable="true" data-filter-control="select">银行</th>
-	                    			<th data-field="branch"  data-sortable="true" data-filter-control="select">支行</th>
+	                    			<th data-field="bank" data-sortable="true" data-filter-control="input">银行</th>
+	                    			<th data-field="branch"  data-sortable="true" data-filter-control="input">支行</th>
 	                    			<th data-field="account"  data-sortable="true" data-filter-control="input">账户</th>
 	                    			<th data-field="currency"  data-sortable="true">币种</th>
 	                    			<th data-field="remain"  data-sortable="true">余额</th>
@@ -75,16 +95,26 @@
                 <div class="panel panel-default">
                 	<div class="panel-body">
                 	    <div>
-                	    	<h3>外币余额</h3>
+                	    	<h3>外币余额(历史记录)</h3>
+                	    	<div id="toolbar3" class="btn-group">
+	                   			<div class="row">
+	                  				<div class="col-md-4">
+	                  					<button class="btn btn-primary" style="width: 60px" onclick="getSum3()">求和</button>
+	                  				</div>
+	                  				<div class="col-md-4">
+	                  					<input type="text" id="sumText3" style="width: 100px; " readonly="readonly">
+	                  				</div>
+	                   			</div>
+	                   		</div>
 	                		<table id="foreignRemain" data-filter-control="true">
 	                    	<thead>
 	                    		<tr>
 	                    			<th data-checkbox="true"></th>
 	                    			<th data-field="id" data-sortable="true">序号</th>
-	                    			<th data-field="bank" data-sortable="true" data-filter-control="select">银行</th>
-	                    			<th data-field="branch"  data-sortable="true" data-filter-control="select">支行</th>
+	                    			<th data-field="bank" data-sortable="true" data-filter-control="input">银行</th>
+	                    			<th data-field="branch"  data-sortable="true" data-filter-control="input">支行</th>
 	                    			<th data-field="account"  data-sortable="true" data-filter-control="input">账户</th>
-	                    			<th data-field="currency"  data-sortable="true" data-filter-control="select">币种</th>
+	                    			<th data-field="currency"  data-sortable="true" data-filter-control="input">币种</th>
 	                    			<th data-field="remain"  data-sortable="true">余额</th>
 	                    			<th data-field="date" data-sortable="true">日期</th>
 	                    		</tr>

@@ -12,7 +12,7 @@ public class LiquidLoan {
 	private String registerdate;
 	private boolean isusecredit;
 	private boolean isrepayed;
-	
+	private String str;
 	
 	
 	public LiquidLoan() {
@@ -75,6 +75,18 @@ public class LiquidLoan {
 
 	public void setIsusecredit(boolean isusecredit) {
 		this.isusecredit = isusecredit;
+	}
+
+	
+
+	public String getStr() {
+		return str;
+	}
+
+
+
+	public void setStr(String str) {
+		this.str = str;
 	}
 
 

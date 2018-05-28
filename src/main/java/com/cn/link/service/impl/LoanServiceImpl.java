@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cn.link.mapper.LoanMapper;
+import com.cn.link.model.DomesticCertification;
 import com.cn.link.model.LiquidLoan;
 import com.cn.link.service.LoanService;
 
@@ -37,6 +38,31 @@ public class LoanServiceImpl implements LoanService {
 	public List<LiquidLoan> queryLiquidLoan(String today) {
 		// TODO Auto-generated method stub
 		return loanMapper.queryLiquidLoanByDate(today);
+	}
+
+	@Override
+	public int insertDomesticCertificate(DomesticCertification dc) {
+		// TODO Auto-generated method stub
+		return loanMapper.insertDomesticCertificate(dc);
+	}
+
+	@Override
+	public List<DomesticCertification> queryDomesticCertificationByDate(String today) {
+		// TODO Auto-generated method stub
+		return loanMapper.queryDomesticCertificationByDate(today);
+	}
+
+	@Override
+	public List<LiquidLoan> queryAllLiquidLoanByDate(String today, String nextDate, String nextNextDate) {
+		// TODO Auto-generated method stub
+		return loanMapper.queryAllLiquidLoanByDate(today, nextDate, nextNextDate);
+	}
+
+	@Override
+	public List<DomesticCertification> queryAllDomesticCertificateByDate(String today, String nextDate,
+			String nextNextDate) {
+		// TODO Auto-generated method stub
+		return loanMapper.queryAllDomesticCertificateByDate(today, nextDate, nextNextDate);
 	}
 
 }

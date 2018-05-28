@@ -29,8 +29,8 @@
                 	<h1>录入待还款</h1>
                 	<div class='panel panel-default'>
                 		<div class='panel-body'>
-                			<div class='form-group'>
-                				<label class='col-sm-3 form-label' for='loanApproach'>待还款方式：</label>
+                			<div style='margin-bottom:50px;'>
+                				<label class='col-sm-2 form-label' for='loanApproach'>待还款方式：</label>
                 				<div class='col-sm-9'>
                 					<select id='loanApproach' class='form-control'>
 		                				<option value='liquidLoan' selected='selected'>流贷</option>
@@ -109,6 +109,67 @@
 		                            		<button type="button" class='btn btn-default btn-lg col-sm-offset-4'>清空</button>
 		                            		<button type="submit" class="btn btn-success btn-lg col-sm-offset-1"
 		                            		 id='saveLiquidLoanBtn'>确定</button>
+		                            	</div>
+		                        	</div>
+		                        </div>
+		                    </form>
+		                    
+		                    <form id="inputDomesticCertificate" class="form-horizontal" role="form">
+		                    	<div class="panel panel-default">
+		                        	<div class="panel-body row">
+		                        		<div class="form-group col-md-6">
+		                        			<label for='selectBank2' class="col-sm-3 control-label">银行</label>
+		                                	<div class="col-sm-8">
+		                                    	<select id='selectBank2' class='form-control' name='bank'></select>
+		                                	</div>
+		                        		</div>
+		                        		<div class="form-group col-md-6">
+		                        			<label for='inputCerticificateId' class="col-sm-4 control-label">凭证号</label>
+		                                	<div class="col-sm-8">
+		                                    	<input id='inputCerticificateId' class='form-control'
+		                                    	type='text' name='certificateId'>
+		                                	</div>
+		                        		</div>
+		                        		<div class="form-group col-md-6">
+		                        			<label for='inputPrice' class="col-sm-3 control-label">金额</label>
+		                                	<div class="col-sm-8">
+		                                    	<input id='inputPrice' class='form-control'
+		                                    	type='text' name='price'>
+		                                	</div>
+		                        		</div>
+		                        		<div id='inputInterestDateDiv' class='form-group col-md-6'>
+		                        			<label for="inputInterestDate" class="col-sm-4 control-label">到期日</label>
+		                        			<div class="col-sm-8">
+			                                    <div class="input-group date form_date" data-date="" data-date-format="yyyy/mm/dd" data-link-field="inputInterestDate" data-link-format="yyyy/mm/dd">
+			                                        <input id="inputInterestDateText" class="form-control" size="16" type="text" value="" onchange="setWeekday()" readonly="true">
+			                                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+			                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+			                                    </div>
+			                                    <input type="hidden" id="inputInterestDate" value="" name='interestDate'/><br/>
+		                                	</div>
+		                        		</div>
+		                        		<div class="form-group col-md-6">
+		                        			<label for='inputBond' class="col-sm-3 control-label">保证金</label>
+		                                	<div class="col-sm-8">
+		                                    	<input id='inputBond' class='form-control'
+		                                    	type='text' name='bond'>
+		                                	</div>
+		                        		</div>
+		                        		<div id="inputIsUseCreditDiv2" class="form-group col-md-6">
+		                        			<label for='inputIsUseCredit2' class="col-sm-4 control-label">是否占用授信</label>
+		                                	<div class="col-sm-8">
+		                                    	<label class="radio-inline">
+		                                    		<input type='radio' id='inputIsUseCredit2' name='isUseCredit' value="1">yes
+		                                    	</label>
+		                                    	<label class="radio-inline">
+		                                    		<input type='radio' id='inputIsUseCredit2' name='isUseCredit' value="0" checked>no
+		                                    	</label>
+		                                	</div>
+		                        		</div>
+		                        		<div class='form-group col-md-12'>
+		                            		<button type="button" class='btn btn-default btn-lg col-sm-offset-4'>清空</button>
+		                            		<button type="submit" class="btn btn-success btn-lg col-sm-offset-1"
+		                            		 id='saveDomesticCertificateBtn'>确定</button>
 		                            	</div>
 		                        	</div>
 		                        </div>

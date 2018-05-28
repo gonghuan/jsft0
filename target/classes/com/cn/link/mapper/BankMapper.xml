@@ -116,4 +116,16 @@
   <select id='queryBankbranch' resultMap="BankBranchMap">
   	select * from bankbranch;
   </select>
+  
+  <insert id="insertBankBranch">
+  	insert into bankbranch(bank, bankName, account, currency) values(#{bank}, #{bankName}, #{account}, #{currency})
+  </insert>
+  
+  <delete id='delBankBranch'>
+  	delete from bankbranch where account in(
+  		<foreach collection='array' item='account' separator=','>
+  			#{account}
+  		</foreach>
+  	)
+  </delete>
 </mapper>

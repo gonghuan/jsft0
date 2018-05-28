@@ -38,4 +38,8 @@ public interface BankService {
 	public List<BankBranch> queryBankBranches();
 	
 	public int insertBankRemainList(List<BankRemain> list);
+	
+	public int insertBankBranch(BankBranch bankBranch);
+	
+	public int delBankBranch(String[] accounts);
 }

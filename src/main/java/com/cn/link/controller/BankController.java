@@ -3,6 +3,7 @@ package com.cn.link.controller;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -126,5 +127,30 @@ public class BankController {
 		List<BankBranch> bankBranches = bankService.queryBankBranches();
 		logger.info("银行账户" + JSON.toJSONString(bankBranches));
 		return bankBranches;
+	}
+	
+	@RequestMapping(value="insertBankBranch", method=RequestMethod.POST)
+	public @ResponseBody boolean insertBankBranch(@RequestParam("bank") String bank,
+			@RequestParam("bankName") String bankName, @RequestParam("currency") String currency,
+			@RequestParam("account") String account){
+		BankBranch bankBranch = new BankBranch(bank, bankName, currency, account);
+		int times = bankService.insertBankBranch(bankBranch);
+		if(times >= 1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	@RequestMapping(value="delBankBranch", method=RequestMethod.POST)
+	public @ResponseBody boolean delBankBranch(String[] accounts){
+		System.out.println(Arrays.toString(accounts));
+		int times = bankService.delBankBranch(accounts);
+		logger.info("删除了" + times +"条支行记录");
+		if(times >= 1){
+			return true;
+		}else{
+			return false;
+		}
 	}
 }

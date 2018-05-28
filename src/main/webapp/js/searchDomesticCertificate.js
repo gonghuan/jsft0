@@ -1,6 +1,6 @@
 $(function(){
-	$('#liquidLoan').bootstrapTable({
-		url: 'queryLiquidLoan.do',
+	$('#domesticCertificate').bootstrapTable({
+		url: 'queryDomesticCertification.do',
 		method: 'get',
 		toolbar: '#toolbar1',
 		striped: true,
@@ -24,11 +24,11 @@ $(function(){
 });
 
 function getSum1(){
-	var selections = $('#liquidLoan').bootstrapTable('getSelections');
+	var selections = $('#domesticCertificate').bootstrapTable('getSelections');
 	if(selections.length > 0){
 		var sum = 0.0;
     	for(var i = 0; i < selections.length; i++){
-    		sum += parseFloat(selections[i].money);
+    		sum += parseFloat(selections[i].price);
     	}
     	$('#sumText1').val(sum.toFixed(2));
     	//$('#sumText').css({color: "black"});

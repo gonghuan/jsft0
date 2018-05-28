@@ -41,7 +41,62 @@
 							<button id='delBtn' type='button' class='btn btn-danger'>删除账户</button>
 						</div>
 						<div class='col-md-4'>
-							<button id='addBtn' type='button' class='btn btn-primary'>添加账户</button>
+							<button id='addBtn' type='button' class='btn btn-primary' data-toggle='modal'
+							 data-target='#myModal'>添加账户</button>
+							 <div class='modal fade' id='myModal' role='dialog' tabindex='-1'
+							  aria-labelledby='myModalLabel' aria-hidden='true'>
+							  	<div class='modal-dialog'>
+							  		<div class='modal-content'>
+							  			<div class='modal-header'>
+							  				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							  				&times;</button>
+                							<h4 class="modal-title" id="myModalLabel">添加账户</h4>
+							  			</div>
+							  			<div class='modal-body'>
+							  				<form class='form' role='form' id='bankBranch'>
+							  					<div class='row'>
+							  						<label class='form-label col-sm-2' for='inputBank'>银行</label>
+							  						<div class='col-sm-10'>
+							  							<input type='text' class='form-control' id='inputBank' name='bank'>
+							  						</div>
+							  					</div>
+							  					<div class='row'>
+							  						<label class='form-label col-sm-2' for='inputBankName'>支行</label>
+							  						<div class='col-sm-10'>
+							  							<input type='text' class='form-control' id='inputBankName' name='bankName'>
+							  						</div>
+							  					</div>
+							  					<div class='row'>
+							  						<label class='form-label col-sm-2' for='inputBank'>币种</label>
+							  						<div class='col-sm-10'>
+							  							<select class='form-control' id='inputCurrency' name='currency'>
+							  								<option value="0" selected="selected">请选择货币种类</option>
+					                                        <option value="人民币CNY">人民币CNY</option>
+					                                        <option value="美元USD">美元USD</option>
+					                                        <option value="欧元EUR">欧元EUR</option>
+					                                        <option value="日元JPY">日元JPY</option>
+					                                        <option value="加拿大元CAD">加拿大元CAD</option>
+					                                        <option value="新加坡元SGD">新加坡元SGD</option>
+							  							</select>
+							  						</div>
+							  					</div>
+							  					<div class='row'>
+							  						<label class='form-label col-sm-2' for='inputAccount'>账户</label>
+							  						<div class='col-sm-10'>
+							  							<input type='text' class='form-control' id='inputAccount'
+							  							 name='account'>
+							  						</div>
+							  					</div>
+							  				</form>
+							  			</div>
+							  			<div class='modal-footer'>
+							  				<button type='button' class='btn btn-default' data-dismiss='modal'>关闭
+							  				</button>
+							  				<button type='button' class='btn btn-primary' id='addAccountBtn'>添加账户</button>
+							  			</div>
+							  		</div>
+							  	</div>
+							  </div>
 						</div>
 						
 					</div>
@@ -106,5 +161,59 @@
     		}],
 		});
 	}
+	
+	$('#addAccountBtn').click(function(){
+		$.ajax({
+			url: 'insertBankBranch.do',
+			data: $('#bankBranch').serialize(),
+			type: 'post',
+			success: function(data){
+				if(data == true){
+					alert('添加成功！');
+					location.reload();
+				}else{
+					alert('发生未知错误，请重试！');
+				}
+			},
+			error: function(data, e, status){
+				alert('发生未知错误，请重试！');
+				console.log(e);
+				console.log(status);
+			}
+		});
+	});
+	
+	$('#delBtn').click(function(){
+		var selections = $('#table').bootstrapTable('getSelections');
+		var accounts = [];
+		if(selections.length == 0){
+			alert('请先选择要删除的记录！');
+		}else{
+			for(var i = 0; i < selections.length; i++){
+				var selection = selections[i];
+				accounts.push(selection.account);
+			}
+			$.ajax({
+				url: 'delBankBranch.do',
+				data: {'accounts':accounts},
+				traditional: true,
+				type: 'post',
+				success:  function(data){
+					if(data == true){
+						alert('删除成功！');
+						location.reload();
+					}else{
+						alert('发生未知错误，请重试！');
+					}
+				},
+				error: function(data, e, status){
+					alert('发生未知错误，请重试！');
+					console.log(e);
+					console.log(status);
+				}
+			});
+		}
+		
+	});
 </script>
 </html>

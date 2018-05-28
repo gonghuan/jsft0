@@ -10,14 +10,13 @@
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/framework/bootstrap/bootstrap.min.js"></script>
     <script src="js/framework/bootstrap/bootstrap-table.js"></script>
-    <script src="js/framework/bootstrap/jquery.base64.js"></script>
     <script src="//rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
     <script src="js/framework/bootstrap/bootstrap-table-export.js"></script>
     <script src="js/framework/bootstrap/bootstrap-table-zh-CN.js"></script>
     <script src="js/framework/bootstrap/bootstrap-table-filter-control.js"></script>
     <script src="js/framework/bootstrap/bootstrap-datetimepicker.min.js"></script>
     <script src="js/framework/bootstrap/bootstrap-datetimepicker.zh-CN.js"></script>
-    <script src="js/searchLiquidLoan.js"></script>
+    <script src="js/searchDomesticCertificate.js"></script>
 </head>
 <body>
 	<div class='container-fluid'>
@@ -26,13 +25,13 @@
 				<ul class="nav nav-sidebar">
 					<li><label>其他待还款</label></li>
 					<li id='inputLoanNavSiderbar'><a href='#/otherRepayment'>录入待还款</a></li>
-					<li id="searchLiquidLoanNavSidebar" class='active'><a href="#/searchLiquidLoan">查看流贷</a></li>
-					<li id="searchInternalCertificateNavSidebar"><a href="#/searchInternalCertificate">查看国内证</a></li>
+					<li id="searchLiquidLoanNavSidebar"><a href="#/searchLiquidLoan">查看流贷</a></li>
+					<li id="searchInternalCertificateNavSidebar" class='active'><a href="#/searchInternalCertificate">查看国内证</a></li>
 				</ul>
 			</div>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<div class="container" style="width: 100%;">
-                	<h1>查看流贷</h1>
+                	<h1>查看国内证</h1>
                 	<div class="panel panel-default">
 	                	<div class="panel-body">
 	                		<div id="toolbar1" class="btn-group">
@@ -45,18 +44,16 @@
 	                  				</div>
 	                   			</div>
 	                   		</div>
-	                		<table id='liquidLoan' data-filter-control="true">
+	                		<table id='domesticCertificate' data-filter-control="true">
 		                		<thead>
 		                    		<tr>
 		                    			<th data-checkbox="true"></th>
 		                    			<th data-field="id" data-sortable="true">序号</th>
+		                    			<th data-field="certificateid"  data-sortable="true" data-filter-control="input">凭证号</th>
 		                    			<th data-field="bank" data-sortable="true" data-filter-control="select">银行</th>
-		                    			<th data-field="money"  data-sortable="true">贷款金额</th>
-		                    			<th data-field="loandate"  data-sortable="true" data-filter-control="input">发生日</th>
-		                    			<th data-field="repaydate"  data-sortable="true" data-filter-control="input">到期日</th>
-		                    			<th data-field="rate"  data-sortable="true">贷款利率</th>
-		                    			<th data-field="interestway" data-sortable='true' data-filter-control='select'>计息方式</th>
-		                    			<th data-field="loanway" data-sortable='true' data-filter-control='select'>贷款方式</th>
+		                    			<th data-field="price"  data-sortable="true">金额</th>
+		                    			<th data-field="interestdate"  data-sortable="true" data-filter-control="input">到期日</th>
+		                    			<th data-field="bond"  data-sortable="true">保证金</th>
 		                    			<th data-field="str" data-sortable='true'>是否占用授信</th>
 		                    		</tr>
 		                    	</thead>
@@ -66,7 +63,33 @@
                 	
                 </div>
             </div>
-        </div>
-    </div>
+		</div>
+	</div>
 </body>
+<script type="text/javascript">
+$(function(){
+	$('#domesticCertificate').bootstrapTable({
+		url: 'queryDomesticCertification.do',
+		method: 'get',
+		toolbar: '#toolbar',
+		striped: true,
+		sidePagination: 'client',
+		pagination: true,
+		sortable: true,
+		cache: true,
+		pageNumber: 1,    		
+		pageSize: 50,
+		pageList: [10,15,25,50,100],
+		search: true,
+		showRefresh: true,
+		showToggle: true,
+		showColumns: true,
+		queryParams: 'queryParams',
+		clickToSelect: true,
+		columns: [{
+			
+		}]
+	});
+});
+</script>
 </html>

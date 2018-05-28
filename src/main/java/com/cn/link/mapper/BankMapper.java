@@ -38,4 +38,8 @@ public interface BankMapper {
 	public List<BankBranch> queryBankbranch();
 	
 	public int insertBankRemainList(List<BankRemain> list);
+	
+	public int insertBankBranch(BankBranch bankBranch);
+	
+	public int delBankBranch(String[] array);
 }

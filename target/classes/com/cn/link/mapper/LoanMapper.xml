@@ -16,6 +16,17 @@
 	<result column='isrepayed' property='isrepayed'></result>
 </resultMap>
 
+<resultMap id="DomesticCertificationMap" type="com.cn.link.model.DomesticCertification">
+	<id column='id' property='id'></id>
+	<result column='bank' property='bank'></result>
+	<result column='certificateid' property='certificateid'></result>
+	<result column='price' property='price'></result>
+	<result column='interestdate' property='interestdate'></result>
+	<result column='bond' property='bond'></result>
+	<result column='isusecredit' property='isusecredit'></result>
+	<result column='isrepayed' property='isrepayed'></result>
+</resultMap>
+
 <insert id="insertLiquidLoan" parameterType='com.cn.link.model.LiquidLoan'>
 	insert into liquidloan(bank, money, repayDate, rate, interestway, loanway, registerdate, loandate, isusecredit)
 	values(#{bank}, #{money}, #{repaydate}, #{rate}, #{interestway}, #{loanway}, #{registerdate}, 
@@ -32,5 +43,22 @@
 
 <select id="queryLiquidLoanByDate" resultMap='LiquidLoanMap'>
 	select * from liquidloan where isrepayed = 0 and strcmp(#{today}, repayDate) &lt;= 0
+</select>
+
+<insert id='insertDomesticCertificate' parameterType='com.cn.link.model.DomesticCertification'>
+	insert into domesticcertificate(certificateid, bank, price, interestdate, bond, isusecredit)
+	 values(#{certificateid}, #{bank}, #{price}, #{interestdate}, #{bond}, #{isusecredit})
+</insert>
+
+<select id='queryDomesticCertificationByDate' resultMap='DomesticCertificationMap'>
+	select * from domesticcertificate where isrepayed=0 and strcmp(#{today}, interestdate) &lt;= 0
+</select>
+
+<select id='queryAllLiquidLoanByDate' resultMap='LiquidLoanMap'>
+	select * from liquidloan where repayDate = #{today} or repayDate = #{nextDate} or repayDate = #{nextNextDate}
+</select>
+<select id='queryAllDomesticCertificateByDate' resultMap='DomesticCertificationMap'>
+	select * from domesticcertificate where interestdate = #{today} or interestdate = #{nextDate} or
+	 interestdate = #{nextNextDate}
 </select>
 </mapper>

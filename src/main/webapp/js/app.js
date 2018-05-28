@@ -132,6 +132,10 @@ angular.module('myApp',[
     	templateUrl: 'pages/searchLiquidLoan.html',
     	reloadOnSearch: true
     })
+    .when('/searchInternalCertificate',{
+    	templateUrl: 'pages/searchInternalCertificate.html',
+    	reloadOnSearch: true
+    })
     .otherwise({
         redirectTo:'/notice'
     })

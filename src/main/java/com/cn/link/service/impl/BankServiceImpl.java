@@ -72,4 +72,16 @@ public class BankServiceImpl implements BankService {
 		// TODO Auto-generated method stub
 		return bankMapper.insertBankRemainList(list);
 	}
+
+	@Override
+	public int insertBankBranch(BankBranch bankBranch) {
+		// TODO Auto-generated method stub
+		return bankMapper.insertBankBranch(bankBranch);
+	}
+
+	@Override
+	public int delBankBranch(String[] accounts) {
+		// TODO Auto-generated method stub
+		return bankMapper.delBankBranch(accounts);
+	}
 }

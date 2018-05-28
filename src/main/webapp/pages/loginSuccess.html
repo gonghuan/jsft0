@@ -110,6 +110,83 @@
                    	</div>
                 </div>
             </div>
+            
+            <div class="col-md-6" id='div_table3'>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <h3 class="panel-title col-md-8">流贷到期提醒</h3>
+                            <a class="col-md-4 text-right" href="#/notice" onclick='showTable3Details()'>更多详情&gt&gt</a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                    	<div id="toolbar3" class="btn-group">
+                   			<div class="row">
+                  				<div class="col-md-4">
+                  					<button class="btn btn-primary" style="width: 60px" onclick="getSum3()">求和</button>
+                  				</div>
+                  				<div class="col-md-4">
+                  					<input type="text" id="sumText3" style="width: 100px; " readonly="readonly">
+                  				</div>
+                   			</div>
+                   		</div>
+                   		<table id="table3" data-filter-control=true>   
+                    		<thead>
+                    			<tr>
+	                    			<th data-checkbox="true"></th>
+	                    			<th data-field="id" data-sortable="true">序号</th>
+	                    			<th data-field="bank" data-sortable="true" data-filter-control="input">银行</th>
+	                    			<th data-field="money"  data-sortable="true">贷款金额</th>
+	                    			<th data-field="loandate"  data-sortable="true" data-filter-control="input">发生日</th>
+	                    			<th data-field="repaydate"  data-sortable="true" data-filter-control="input">到期日</th>
+	                    			<th data-field="rate"  data-sortable="true">贷款利率</th>
+	                    			<th data-field="interestway" data-sortable='true' data-filter-control='input'>计息方式</th>
+	                    			<th data-field="loanway" data-sortable='true' data-filter-control='input'>贷款方式</th>
+	                    			<th data-field="str" data-sortable='true'>是否占用授信</th>
+	                    		</tr>
+                    		</thead>
+                    	</table>
+                   	</div>
+                </div>
+            </div>
+            
+            <div class="col-md-6" id='div_table4'>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <h3 class="panel-title col-md-8">国内证到期提醒</h3>
+                            <a class="col-md-4 text-right" href="#/notice" onclick='showTable4Details()'>更多详情&gt&gt</a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                    	<div id="toolbar4" class="btn-group">
+                   			<div class="row">
+                  				<div class="col-md-4">
+                  					<button class="btn btn-success" style="width: 60px" onclick="getSum4()">求和</button>
+                  				</div>
+                  				<div class="col-md-4">
+                  					<input type="text" id="sumText4" style="width: 100px; " readonly="readonly">
+                  				</div>
+                   			</div>
+                   		</div>
+                   		<table id="table4" data-filter-control=true>   
+                    		<thead>
+                    			<tr>
+	                    			<th data-checkbox="true"></th>
+	                    			<th data-field="id" data-sortable="true">序号</th>
+	                    			<th data-field="certificateid"  data-sortable="true" data-filter-control="input">凭证号</th>
+	                    			<th data-field="bank" data-sortable="true" data-filter-control="input">银行</th>
+	                    			<th data-field="price"  data-sortable="true">金额</th>
+	                    			<th data-field="interestdate"  data-sortable="true" data-filter-control="input">到期日</th>
+	                    			<th data-field="bond"  data-sortable="true">保证金</th>
+	                    			<th data-field="str" data-sortable='true'>是否占用授信</th>
+	                    		</tr>
+                    		</thead>
+                    	</table>
+                   	</div>
+                </div>
+            </div>
+            
         </div>
     </div>
 </div>
@@ -133,39 +210,7 @@
     		showColumns: true,
     		//singleSelect: true,
     		queryParams: 'queryParams',
-    		columns:[/* {
-    			field: 'contractid',
-    			title: '合同号',
-    			sortable: true	
-    		},{
-    			field: 'paydate',
-    			title: '付款日期',
-    			sortable: true
-    		},{field:'currency',
-    		   title: '币种',
-    		   sortable: true 
-    		},{field:'bank',
-    		   title: '银行',
-    		   sortable: true 
-    		},{field:'days',
-    		   title: '天数',
-    		   sortable: true 
-    		},{field:'payamount',
-    		   title: '付款金额',
-    		   sortable: true 
-    		},{field:'registerdate',
-    		   title: '登记日期',
-    		   sortable: true 
-    		},{field:'lockamount',
-    		   title: '锁汇金额',
-    		   sortable: true 
-    		},{field:'lockrate',
-    		   title: '锁汇汇率',
-    		   sortable: true 
-    		},{field:'state',
-    		   title: '是否押汇',
-    		   sortable: true 
-    		}, */] 
+    		columns:[] 
 		});
 		$('#table1').bootstrapTable('hideColumn', 'currency');
 		$('#table1').bootstrapTable('hideColumn', 'contractid');
@@ -250,6 +295,57 @@
 		$('#table2').bootstrapTable('hideColumn', 'draftrate');
 	});
 	
+	$('#table3').bootstrapTable({
+		url: 'queryAllLiquidLoanByDate.do',
+		method: 'get',
+		toolbar: '#toolbar3',
+		striped: true,
+		pagination: true,
+		sortable: true,
+		pageSize: 20,
+		pageList: [10, 25, 50, 100],
+		search: true,
+		showColumns: true, // 开启自定义列显示功能
+		showRefresh: true,
+		showToggle: true,
+		clickToSelect: true,
+		showColumns: true,
+		//singleSelect: true,
+		queryParams: 'queryParams',
+		columns:[] 
+	});
+	$('#table3').bootstrapTable('hideColumn', 'id');
+	$('#table3').bootstrapTable('hideColumn', 'loandate');
+	$('#table3').bootstrapTable('hideColumn', 'rate');
+	$('#table3').bootstrapTable('hideColumn', 'interestway');
+	$('#table3').bootstrapTable('hideColumn', 'loanway');
+	$('#table3').bootstrapTable('hideColumn', 'str');
+	
+	$('#table4').bootstrapTable({
+		url: 'queryAllDomesticCertificateByDate.do',
+		method: 'get',
+		toolbar: '#toolbar4',
+		striped: true,
+		pagination: true,
+		sortable: true,
+		pageSize: 20,
+		pageList: [10, 25, 50, 100],
+		search: true,
+		showColumns: true, // 开启自定义列显示功能
+		showRefresh: true,
+		showToggle: true,
+		clickToSelect: true,
+		showColumns: true,
+		//singleSelect: true,
+		queryParams: 'queryParams',
+		columns:[] 
+	});
+	$('#table4').bootstrapTable('hideColumn', 'id');
+	$('#table4').bootstrapTable('hideColumn', 'certificateid');
+	$('#table4').bootstrapTable('hideColumn', 'bond');
+	$('#table4').bootstrapTable('hideColumn', 'str');
+
+	
 	function showTable1Details(){
 		$('#div_table1').attr('class', 'col-md-12');
 		$('#table1').bootstrapTable('showColumn', 'currency');
@@ -273,6 +369,24 @@
 		$('#table2').bootstrapTable('showColumn', 'lockrate');
 		$('#table2').bootstrapTable('showColumn', 'loandate');
 		$('#table2').bootstrapTable('showColumn', 'draftrate');	}
+	
+	function showTable3Details(){
+		$('#div_table3').attr('class', 'col-md-12');
+		$('#table3').bootstrapTable('showColumn', 'id');
+		$('#table3').bootstrapTable('showColumn', 'loandate');
+		$('#table3').bootstrapTable('showColumn', 'rate');
+		$('#table3').bootstrapTable('showColumn', 'interestway');
+		$('#table3').bootstrapTable('showColumn', 'loanway');
+		$('#table3').bootstrapTable('showColumn', 'str');
+	}
+	
+	function showTable4Details(){
+		$('#div_table4').attr('class', 'col-md-12');
+		$('#table4').bootstrapTable('showColumn', 'id');
+		$('#table4').bootstrapTable('showColumn', 'certificateid');
+		$('#table4').bootstrapTable('showColumn', 'bond');
+		$('#table4').bootstrapTable('showColumn', 'str');
+	}
 	
 	function getSum1(){
     	var selections = $('#table1').bootstrapTable('getSelections');
@@ -301,6 +415,38 @@
         	//$('#sumText').css({color: "black"});
     	}else{
     		$('#sumText2').val('');
+    		alert('请先选择需要求和的行');
+    		
+    	}
+    }
+	
+	function getSum3(){
+    	var selections = $('#table3').bootstrapTable('getSelections');
+    	if(selections.length > 0){
+    		var sum = 0.0;
+        	for(var i = 0; i < selections.length; i++){
+        		sum += parseFloat(selections[i].money);
+        	}
+        	$('#sumText3').val(sum.toFixed(2));
+        	//$('#sumText').css({color: "black"});
+    	}else{
+    		$('#sumText3').val('');
+    		alert('请先选择需要求和的行');
+    		
+    	}
+    }
+	
+	function getSum4(){
+    	var selections = $('#table4').bootstrapTable('getSelections');
+    	if(selections.length > 0){
+    		var sum = 0.0;
+        	for(var i = 0; i < selections.length; i++){
+        		sum += parseFloat(selections[i].price);
+        	}
+        	$('#sumText4').val(sum.toFixed(2));
+        	//$('#sumText').css({color: "black"});
+    	}else{
+    		$('#sumText4').val('');
     		alert('请先选择需要求和的行');
     		
     	}
