@@ -114,11 +114,7 @@ public class BankController {
 	public @ResponseBody List<BankRemain> queryForeignRemain(){
 		String currency = "人民币CNY";
 		List<BankRemain> list = bankService.queryForeignCurrencyRemain(currency);
-		for(int i = 0; i < list.size(); i++){
-			BankRemain bankRemain = list.get(i);
-			bankRemain.setRemain(0);
-		}
-		logger.info("查询人民币银行余额"+ JSON.toJSONString(list));
+		logger.info("查询外币银行余额"+ JSON.toJSONString(list));
 		return list;
 	}
 	
