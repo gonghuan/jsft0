@@ -3,6 +3,7 @@ package com.cn.link.service;
 import java.util.List;
 
 import com.cn.link.model.CreateBill;
+import com.cn.link.model.CreditRemain;
 
 public interface CreateBillService {
 
@@ -47,5 +48,7 @@ public interface CreateBillService {
 	public List<CreateBill> exportCheckBillByDeptId(String bank,String dept,String currency,String goods,String contractId,String crtDate,Integer deptId);
 	
 	public List<CreateBill> exportUnCheckBillByDeptId(String bank,String dept,String currency,String goods,String contractId,String crtDate,Integer deptId);
+	
+	public List<CreditRemain> listAllCreditRemain();
 
 }

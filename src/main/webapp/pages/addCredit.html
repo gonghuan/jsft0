@@ -6,6 +6,7 @@
                 <li id="inputCreditNavSidebar" class="active"><a href="#/addCredit">录入信用证</a></li>
                 <li id="listCreditNavSidebarCheck" ng-hide="role=='Y'"><a href="#/listCheckCredit" ng-click="listAllCheckBill()">已审批信用证</a></li>
                 <li id="listCreditNavSidebarUnCheck" ng-hide="role=='Y' || role=='B'"><a href="#/listUnCheckCredit" ng-click="listAllUnCheckBill()">未审批信用证</a></li>
+                <li id="listCreditRemain" ng-hide="role=='Y'"><a href="#/listCreditRemain">信用证余额</a></li>
                 <li id="listCreditNavSidebarCheck" ng-show="role=='Y'"><a href="#/listCheckCreditY" ng-click="listAllCheckBill()">本部已审批信用证</a></li>
                 <li id="listCreditNavSidebarUnCheck" ng-show="role=='Y'"><a href="#/listUnCheckCreditY" ng-click="listAllUnCheckBill()">本部未审批信用证</a></li>
             </ul>

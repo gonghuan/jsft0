@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.cn.link.basic.ExportExcel;
 import com.cn.link.model.CreateBill;
+import com.cn.link.model.CreditRemain;
 import com.cn.link.service.CreateBillService;
 
 @Controller
@@ -355,5 +356,16 @@ public class CreateBillController {
 		String fileName="本部信用证未审批开立表";
 		ee.exportExcel(headers, bills, fileName, response);
 		return bills;
+	}
+	
+	@RequestMapping(value="listAllCreditRemain", method=RequestMethod.GET)
+	public @ResponseBody List<CreditRemain> listAllCreditRemain(){
+		List<CreditRemain> list = createBillService.listAllCreditRemain();
+		for(CreditRemain creditRemain: list){
+			if(creditRemain.getRemain() < 1000){
+				creditRemain.setRemain(0);
+			}
+		}
+		return list;
 	}
 }

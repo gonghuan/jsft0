@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.cn.link.mapper.CreateBillMapper;
 import com.cn.link.model.CreateBill;
+import com.cn.link.model.CreditRemain;
 import com.cn.link.service.CreateBillService;
 
 @Service
@@ -128,6 +129,12 @@ public class CreateBillServiceImpl implements CreateBillService {
 	@Override
 	public void deleteById(Integer id) {
 		createBillMapper.deleteById(id);
+	}
+
+	@Override
+	public List<CreditRemain> listAllCreditRemain() {
+		// TODO Auto-generated method stub
+		return createBillMapper.listAllCreditRemain();
 	}
 
 }

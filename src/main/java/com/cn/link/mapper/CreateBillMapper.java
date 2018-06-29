@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.cn.link.model.CreateBill;
+import com.cn.link.model.CreditRemain;
 
 public interface CreateBillMapper {
 	public int deleteByPrimaryKey(String contractid);
@@ -60,4 +61,6 @@ public interface CreateBillMapper {
 			@Param("dept")String dept,@Param("currency")String currency,
 			@Param("goods")String goods,@Param("contractId")String contractId,
 			@Param("crtDate")String crtDate,@Param("deptId")Integer deptId);
+	
+	public List<CreditRemain> listAllCreditRemain();
 }

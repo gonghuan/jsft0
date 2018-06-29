@@ -16,6 +16,10 @@
     <result column="state" jdbcType="CHAR" property="state" />
     <result column="deptId" jdbcType="INTEGER" property="deptid" />
   </resultMap>
+  <resultMap id="remainResultMap" type="com.cn.link.model.CreditRemain">
+  	<result column="contractId" property="contractId"/>
+  	<result column="remain" property="remain"/>
+  </resultMap>
   <sql id="Base_Column_List">
     id,contractId, bank, dept, goods, attribute, proxyClient, currency, crtAmount, crtDate, 
     crtDeadline, state, deptId
@@ -294,5 +298,12 @@
   	<if test="goods != null and goods !='-1'"> and goods LIKE concat (concat ('%',#{goods,jdbcType=CHAR},'%')) </if>
   	<if test="contractId != null and contractId !='-1'"> and contractid LIKE concat(concat('%',#{contractId,jdbcType=CHAR},'%')) </if>
   	<if test="crtDate != null and crtDate !='-1' and crtDate != '/1'"> and crtdate LIKE concat(concat('%', #{crtDate,jdbcType=CHAR},'%')) </if>
+  </select>
+  <select id="listAllCreditRemain" resultMap="remainResultMap">
+  	select createbill.contractId contractId,
+  	 (createbill.crtAmount - accept.payAmount + draftAmount) remain
+  	from createbill
+  	left join accept on createbill.contractId = accept.contractId 
+  	left join draft on createbill.contractId = draft.contractId
   </select>
 </mapper>
